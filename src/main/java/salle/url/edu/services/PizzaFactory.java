@@ -7,15 +7,18 @@ import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.BaconCrispy;
 import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.Traviata;
 import salle.url.edu.models.pizzas.all_pizzas.two_ingredients.Hawaiian;
 import salle.url.edu.models.pizzas.specific_pizzas.BarcelonaPizza;
+import salle.url.edu.models.pizzas.specific_pizzas.GironaPizza;
+import salle.url.edu.models.pizzas.specific_pizzas.LleidaPizza;
+import salle.url.edu.models.pizzas.specific_pizzas.TarragonaPizza;
 
 import java.util.Map;
 
 public class PizzaFactory {
     private static final Map<String, Class<? extends Pizza>> SPECIAL_PIZZAS = Map.of(
-            "Barcelona", BarcelonaPizza.class
-            //"Girona", GironaPizza.class,
-            //"Tarragona", TarragonaPizza.class,
-            //"Lleida", LleidaPizza.class
+            "Barcelona", BarcelonaPizza.class,
+            "Girona", GironaPizza.class,
+            "Tarragona", TarragonaPizza.class,
+            "Lleida", LleidaPizza.class
     );
 
     public static Pizza createPizza(int whichPizza, String delegation) {

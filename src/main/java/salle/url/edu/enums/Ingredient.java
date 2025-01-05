@@ -8,6 +8,7 @@ import lombok.ToString;
 @Getter
 public enum Ingredient {
     TOMATO_SAUCE("Tomato sauce"),
+    BBQ_SAUCE("BBQ sauce"),
     CHEESE("Cheese"),
     HAM("Ham"),
     PINEAPPLE("Pineapple"),
@@ -19,7 +20,10 @@ public enum Ingredient {
     ONION("Onion"),
     BEEF("Beef"),
     BRIE("Brie"),
-    OLIVES("Olives");
+    OLIVES("Olives"),
+    TUNA("Tuna"),
+    PRAWNS("Prawns"),
+    MUSHROOMS("Mushrooms");
 
     // TODO: Add more ingredients
 
