@@ -10,5 +10,8 @@ import salle.url.edu.models.Order;
 public abstract class AbstractDelegation {
     protected String name;
 
+    //PATTERN:  Observer Pattern - {Behavioral Pattern}
+    //          This method is called by the concrete observer to notify the order
+    //          to the concrete subject
     protected abstract void notifyOrder(Order order);
 }

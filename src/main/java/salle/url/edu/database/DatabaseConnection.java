@@ -17,7 +17,8 @@ public class DatabaseConnection {
         connection = DriverManager.getConnection(url);
     }
 
-    // PATTERN: Singleton used for the DatabaseConnection class to ensure only one instance is created,
+    // PATTERN: Singleton - {Creational Pattern}
+    //          used for the DatabaseConnection class to ensure only one instance is created,
     //          which helps to avoid multiple connections to the database
     public static DatabaseConnection getInstance() throws SQLException {
         if (instance == null) {

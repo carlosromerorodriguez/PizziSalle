@@ -16,6 +16,13 @@ import java.util.Scanner;
 
 @RequiredArgsConstructor
 public class OrderService {
+
+    // PATTERN: Patron Strategy - {Behavioral Pattern}
+    //         This class is a concrete strategy that implements the BeverageValidation interface
+    //         and is used to validate if a person can consume a beer based on the age
+    //         is used to represent the different strategies to validate if a person can consume a beverage
+    //         based on the age
+
     private final Scanner scanner = new Scanner(System.in);
     private final OrderRepository orderRepository;
 

@@ -9,6 +9,11 @@ import java.util.Map;
 public abstract class PizzaDecorator extends Pizza {
     protected final Pizza pizza;
 
+
+    // PATTERN: Decorator Pattern - {Structural Pattern}
+    //          This class is the base class for all the decorators
+    //          that will be used to decorate the pizzas
+
     public PizzaDecorator(Pizza pizza) {
         super(pizza.getName());
         this.pizza = pizza;

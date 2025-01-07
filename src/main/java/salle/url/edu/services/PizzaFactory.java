@@ -14,6 +14,11 @@ import salle.url.edu.models.pizzas.specific_pizzas.TarragonaPizza;
 import java.util.Map;
 
 public class PizzaFactory {
+
+    // PATTERN: Factory Method - {Creational Pattern}
+    //          used to create a Pizza object because the Pizza class is abstract,
+    //          and we need to create instances of its subclasses (e.g. Margherita, Pepperoni, etc.)
+
     private static final Map<String, Class<? extends Pizza>> SPECIAL_PIZZAS = Map.of(
             "Barcelona", BarcelonaPizza.class,
             "Girona", GironaPizza.class,
