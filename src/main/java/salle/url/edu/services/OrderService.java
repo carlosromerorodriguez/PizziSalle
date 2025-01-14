@@ -26,6 +26,9 @@ public class OrderService {
     private final Scanner scanner = new Scanner(System.in);
     private final OrderRepository orderRepository;
 
+    String redColor = "\u001B[31m";
+    String resetColor = "\u001B[0m";
+
     public int saveOrder(int customerId, String delegation, Pizza pizza) throws SQLException {
         // Save the order and get the orderId
         return this.orderRepository.saveOrder(customerId, delegation);
@@ -43,7 +46,7 @@ public class OrderService {
                 Beverage beverage = Beverage.values()[choice - 1];
 
                 if (!beverage.canConsume(age)) {
-                    System.out.println("You are not allowed to consume beer.");
+                    System.out.println(redColor + "You are not allowed to consume beer." + resetColor);
                     continue;
                 }
 
@@ -51,7 +54,7 @@ public class OrderService {
                 System.out.println("Beverage added: " + beverage.getName());
                 return;
             } else {
-                System.out.println("ERROR: Option must be between 1 and 3.");
+                System.out.println(redColor + "ERROR: Option must be between 1 and 3." + resetColor);
             }
         } while (true);
     }

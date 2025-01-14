@@ -19,6 +19,10 @@ public class PizzaService {
     private String delegation;
     private final PizzaRepository pizzaRepository;
 
+    String redColor = "\u001B[31m";
+    String resetColor = "\u001B[0m";
+    String greenColor = "\u001B[32m";
+
     public void showWelcomeMessage() {
         System.out.println("Welcome to PizziSalle " + this.delegation + " delegation!");
     }
@@ -42,7 +46,7 @@ public class PizzaService {
             Ingredient[] ingredients = Ingredient.values();
             showIngredientsMenu(pizza, ingredients);
 
-            System.out.print("-> Add an ingredient (type 'done' to finish): ");
+            System.out.print("-> Add an ingredient (type " + greenColor + "'done' "+ resetColor +  "finish): ");
             String ingredientInput = scanner.nextLine();
 
             if ("done".equalsIgnoreCase(ingredientInput)) break;
@@ -56,11 +60,11 @@ public class PizzaService {
 
     private void checkIngredient(Pizza pizza, Ingredient ingredient) {
         if (ingredient == null) {
-            System.out.println("Invalid ingredient. Please try again.");
+            System.out.println(redColor + "Invalid ingredient. Please try again." + resetColor);
         } else if (pizza.getIngredients().containsKey(ingredient) && pizza.getIngredients().get(ingredient) >= 10) {
-            System.out.println("You cannot add more than 10 of the same ingredient.");
+            System.out.println(redColor + "You cannot add more than 10 of the same ingredient." + resetColor);
         } else {
-            System.out.println("Adding " + ingredient.getName() + " to the pizza...");
+            System.out.println(greenColor + "Adding " + ingredient.getName() + " to the pizza..." + resetColor);
             pizza.addIngredient(ingredient);
         }
     }
@@ -68,7 +72,7 @@ public class PizzaService {
     private int askForIngredientInput(int max, String ingredientInput) {
         do {
             if (!ValidationUtils.checkInt(1, max, ingredientInput)) {
-                System.out.print("Invalid ingredient. Please try again: ");
+                System.out.print(redColor + "Invalid ingredient. Please try again: " + resetColor);
                 ingredientInput = scanner.nextLine();
             } else {
                 return Integer.parseInt(ingredientInput);
@@ -101,7 +105,7 @@ public class PizzaService {
                 case "1": return new CrustDecorator(pizza, Crust.ORIGINAL);
                 case "2": return new CrustDecorator(pizza, Crust.THIN);
                 case "3": return new CrustDecorator(pizza, Crust.SICILIAN);
-                default: System.out.println("Invalid choice. Please select again.");
+                default: System.out.println(redColor + "Invalid choice. Please select again." + resetColor);
             }
         }
     }
@@ -139,7 +143,7 @@ public class PizzaService {
             if (ValidationUtils.checkInt(1, 6, line)) {
                 return Integer.parseInt(line);
             } else {
-                System.out.print("ERROR: Please, select a valid pizza number: ");
+                System.out.print(redColor + "ERROR: Please, select a valid pizza number: " + resetColor);
             }
         } while (true);
     }

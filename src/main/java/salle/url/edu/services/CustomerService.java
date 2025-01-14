@@ -15,6 +15,10 @@ public class CustomerService {
     private final Scanner scanner = new Scanner(System.in);
     private final CustomerRepository customerRepository;
 
+    String redColor = "\u001B[31m";
+    String resetColor = "\u001B[0m";
+    String yellowColor = "\u001B[33m";
+
     public Customer getCustomerInfo() {
         String name = this.askForName();
         int age = this.askForAge();
@@ -32,7 +36,7 @@ public class CustomerService {
             if (ValidationUtils.checkName(line)) {
                 return line;
             } else {
-                System.out.println("ERROR: Name must be between 3 and 50 characters and only letters.");
+                System.out.println(redColor + "ERROR: Name must be between 3 and 50 characters and only letters." + resetColor);
             }
         } while (true);
     }
@@ -44,7 +48,7 @@ public class CustomerService {
             if (ValidationUtils.checkInt(10, 100, line)) {
                 return Integer.parseInt(line);
             } else {
-                System.out.println("ERROR: Age must be between 10 and 100.");
+                System.out.println(redColor + "ERROR: Age must be between 10 and 100." + resetColor);
             }
         } while (true);
     }
@@ -56,7 +60,7 @@ public class CustomerService {
             if (ValidationUtils.checkPhone(line)) {
                 return line;
             } else {
-                System.out.println("ERROR: Phone number must be 9 digits.");
+                System.out.println(redColor + "ERROR: Phone number must be 9 digits." + resetColor);
             }
         } while (true);
     }
@@ -68,13 +72,13 @@ public class CustomerService {
             if (ValidationUtils.checkAddress(line)) {
                 return line;
             } else {
-                System.out.println("ERROR: Address must be between 10 and 100 characters.");
+                System.out.println(redColor + "ERROR: Address must be between 10 and 100 characters." + resetColor);
             }
         } while (true);
     }
 
     private boolean askIfFirstOrder() {
-        System.out.println("Is this your first order?");
+        System.out.println("\n" + yellowColor + "Is this your first order?" + resetColor);
         System.out.println("1- Yes");
         System.out.println("2- No");
 
@@ -84,7 +88,7 @@ public class CustomerService {
             if (ValidationUtils.checkInt(1, 2, line)) {
                 return Integer.parseInt(line) == 1;
             } else {
-                System.out.println("ERROR: Option must be between 1 and 2.");
+                System.out.println(redColor + "ERROR: Option must be between 1 and 2." + resetColor);
             }
         } while (true);
     }
