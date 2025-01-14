@@ -23,9 +23,21 @@ public enum Ingredient {
     OLIVES("Olives"),
     TUNA("Tuna"),
     PRAWNS("Prawns"),
-    MUSHROOMS("Mushrooms");
-
-    // TODO: Add more ingredients
+    MUSHROOMS("Mushrooms"),
+    ROQUEFORT("Roquefort"),
+    MINIBURGERS("Miniburgers"),
+    ANCHOVIES("Anchovies"),
+    ARTICHOKE("Artichoke"),
+    BELL_PEPPER("Bell pepper"),
+    GOAT_CHEESE("Goat cheese"),
+    SOBRASSADA("Sobrassada"),
+    CHEDDAR("Cheddar"),
+    EMMENTAL("Emmental"),
+    HONEY("Honey"),
+    PEPPERONI("Pepperoni"),
+    TOMATO_SLICES("Tomato slices"),
+    MOZZARELLA("Mozzarella"),
+    CARBONARA_SAUCE("Carbonara sauce");
 
     private final String name;
 
