@@ -96,4 +96,11 @@ public class CustomerService {
     public int saveCustomer(Customer customer) throws SQLException {
         return this.customerRepository.saveCustomer(customer);
     }
+    public Customer getCustomerById(int customerId) {
+        return customerRepository.findCustomerById(customerId);
+    }
+    public Integer getCustomerIdByPhone(String phoneNumber) {
+        return customerRepository.findCustomerIdByPhone(phoneNumber);
+    }
+
 }

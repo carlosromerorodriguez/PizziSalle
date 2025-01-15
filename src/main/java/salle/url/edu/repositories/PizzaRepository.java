@@ -4,6 +4,9 @@ import salle.url.edu.database.DatabaseConnection;
 import salle.url.edu.models.pizzas.Pizza;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -31,5 +34,21 @@ public class PizzaRepository {
             stmt.setString(5, pizza.getBeverage().getName());
             stmt.executeUpdate();
         }
+    }
+    public List<String> findPizzasByOrderId(int orderId) {
+        List<String> pizzas = new ArrayList<>();
+        String query = "SELECT pizzaName FROM order_pizzas WHERE orderId = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, orderId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                pizzas.add(rs.getString("pizzaName"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pizzas;
     }
 }

@@ -10,8 +10,16 @@ import salle.url.edu.repositories.CustomerRepository;
 import salle.url.edu.repositories.OrderRepository;
 import salle.url.edu.repositories.PizzaRepository;
 import salle.url.edu.utils.ValidationUtils;
+import salle.url.edu.models.pizzas.all_pizzas.no_ingredients.Margherita;
+import salle.url.edu.models.pizzas.all_pizzas.two_ingredients.Hawaiian;
+import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.BaconCrispy;
+import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.American;
+import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.Traviata;
+
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -25,6 +33,8 @@ public class OrderService {
 
     private final Scanner scanner = new Scanner(System.in);
     private final OrderRepository orderRepository;
+    private final PizzaService pizzaService;
+    private final CustomerService customerService;
 
     String redColor = "\u001B[31m";
     String resetColor = "\u001B[0m";
@@ -57,5 +67,51 @@ public class OrderService {
                 System.out.println(redColor + "ERROR: Option must be between 1 and 3." + resetColor);
             }
         } while (true);
+    }
+    public List<Integer> getOrderIdsByCustomerId(int customerId) {
+        return orderRepository.findOrdersByCustomerId(customerId);
+    }
+
+    public List<Order> getOrdersDetails(int customerId) {
+        List<Integer> orderIds = orderRepository.findOrdersByCustomerId(customerId);
+        List<Order> orders = new ArrayList<>();
+
+        Customer customer = customerService.getCustomerById(customerId);
+        if (customer == null) {
+            System.out.println("Error: No se encontró información del cliente.");
+            return orders;
+        }
+
+        for (Integer orderId : orderIds) {
+            List<String> pizzaNames = pizzaService.getOrderDetailsByOrderId(orderId);
+            String delegation = orderRepository.getDelegationByOrderId(orderId); // Método para obtener la delegación
+
+            for (String pizzaName : pizzaNames) {
+                Pizza pizza = createPizzaFromName(pizzaName, delegation);
+
+                if (pizza != null) {
+                    orders.add(new Order(customer, delegation, pizza));
+                } else {
+                    System.out.println("Error: No se pudo crear la pizza '" + pizzaName + "'");
+                }
+            }
+        }
+        return orders;
+    }
+    private Pizza createPizzaFromName(String pizzaName, String delegation) {
+        switch (pizzaName.toLowerCase()) {
+            case "margherita":
+                return new Margherita();
+            case "hawaiian":
+                return new Hawaiian();
+            case "bacon crispy":
+                return new BaconCrispy();
+            case "american":
+                return new American();
+            case "traviata":
+                return new Traviata();
+            default:
+                return PizzaFactory.createPizza(0, delegation); // Crea una pizza específica según la delegación
+        }
     }
 }

@@ -10,6 +10,7 @@ import salle.url.edu.repositories.PizzaRepository;
 import salle.url.edu.utils.ValidationUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -147,7 +148,9 @@ public class PizzaService {
             }
         } while (true);
     }
-
+    public List<String> getOrderDetailsByOrderId(int orderId) {
+        return pizzaRepository.findPizzasByOrderId(orderId);
+    }
     public void savePizza(int orderId, Pizza pizza) throws SQLException {
         this.pizzaRepository.savePizza(orderId, pizza);
     }

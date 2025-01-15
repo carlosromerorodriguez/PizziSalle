@@ -39,4 +39,36 @@ public class CustomerRepository {
             }
         }
     }
+    public Integer findCustomerIdByPhone(String phoneNumber) {
+        String query = "SELECT id FROM customers WHERE phone = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, phoneNumber);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Devuelve null si no se encuentra el cliente
+    }
+    public Customer findCustomerById(int customerId) {
+        String query = "SELECT id, name, age, phone, address, isFirstOrder FROM customers WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, customerId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Customer(
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getBoolean("isFirstOrder")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

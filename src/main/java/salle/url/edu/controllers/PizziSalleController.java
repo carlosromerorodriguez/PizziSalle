@@ -12,6 +12,7 @@ import salle.url.edu.services.PizzaService;
 
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class PizziSalleController {
@@ -47,5 +48,13 @@ public class PizziSalleController {
 
         // Notify the General Delegation of the new order (Observer pattern)
         general.notifyOrder(new Order(customer, delegation, pizza));
+    }
+    public List<Order> getOrdersByPhone(String phoneNumber) {
+        Integer customerId = customerService.getCustomerIdByPhone(phoneNumber);
+        if (customerId == null) {
+            return null;
+        }
+
+        return orderService.getOrdersDetails(customerId);
     }
 }
