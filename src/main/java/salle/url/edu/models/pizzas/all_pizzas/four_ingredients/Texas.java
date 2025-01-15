@@ -5,7 +5,7 @@ import salle.url.edu.models.pizzas.Pizza;
 
 public class Texas extends Pizza {
 
-    public Texas(String name) {
+    public Texas() {
         super("Texas");
         addSpecificIngredients();
     }

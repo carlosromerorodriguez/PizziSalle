@@ -67,44 +67,44 @@ public class Main {
     private static void runMenu(PizziSalleController pizziSalleController) {
         Scanner scanner = new Scanner(System.in);
         int option;
+        System.out.println("\nWelcome to PizziSalle!");
         do {
-            System.out.println("\nMenú:");
-            System.out.println("1. Hacer un nuevo pedido");
-            System.out.println("2. Ver órdenes por número de teléfono");
-            System.out.println("3. Salir");
-            System.out.print("Selecciona una opción: ");
+            System.out.println("\n1. Make an order");
+            System.out.println("2. Show orders by phone number");
+            System.out.println("3. Log out");
+            System.out.print("Choose an option: ");
             option = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
+            scanner.nextLine(); // Clean buffer
 
             switch (option) {
                 case 1:
                     try {
                         pizziSalleController.run();
                     } catch (SQLException e) {
-                        System.out.println("Error al procesar el pedido: " + e.getMessage());
+                        System.out.println("Error processing the order: " + e.getMessage());
                     }
                     break;
                 case 2:
-                    System.out.print("Introduce tu número de teléfono: ");
+                    System.out.print("Give us your phone number: ");
                     String phoneNumber = scanner.nextLine();
                     List<Order> orders = pizziSalleController.getOrdersByPhone(phoneNumber);
 
                     if (orders == null || orders.isEmpty()) {
-                        System.out.println("No se encontraron órdenes para este número de teléfono.");
+                        System.out.println("We couldn't find any orders associated to that phone number.");
                     } else {
-                        System.out.println("\nTus órdenes:");
+                        System.out.println("\nYour orders:");
                         for (Order order : orders) {
-                            System.out.println("Orden #" + order.getPizza().getName() +
-                                    " - Delegación: " + order.getDelegation() +
-                                    " - Cliente: " + order.getCustomer().getName());
+                            System.out.println("Order " + order.getPizza().getName() +
+                                    " - Delegation: " + order.getDelegation() +
+                                    " - Client: " + order.getCustomer().getName());
                         }
                     }
                     break;
                 case 3:
-                    System.out.println("Saliendo...");
+                    System.out.println("...");
                     break;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Error. Invalid option!");
             }
         } while (option != 3);
     }

@@ -4,6 +4,7 @@ import salle.url.edu.models.Order;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GeneralDelegation extends AbstractDelegation {
     private final List<AbstractDelegation> subDelegations = new ArrayList<>();
@@ -25,9 +26,11 @@ public class GeneralDelegation extends AbstractDelegation {
 
     @Override
     public void notifyOrder(Order order) {
-        System.out.println("General Delegation notified about the new order: " + order.getCustomer().getName());
+        System.out.println("\nGeneral Delegation has been notified about a new order from customer " + order.getCustomer().getName());
         for (AbstractDelegation delegation : subDelegations) {
-            delegation.notifyOrder(order);
+            if (Objects.equals(order.getDelegation(), delegation.getName())){
+                delegation.notifyOrder(order);
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ public class ValidationUtils {
 
     public static boolean checkName(String name) {
         // Name can't be empty or contain numbers or special characters
-        return name.length() > 3 && name.length() < 50 && name.matches("[a-zA-Z]+");
+        return name.length() > 1 && name.length() < 50 && name.matches("[a-zA-Z]+");
     }
 
     public static boolean checkPhone(String line) {

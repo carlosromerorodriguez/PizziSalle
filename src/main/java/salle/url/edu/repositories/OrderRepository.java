@@ -22,7 +22,7 @@ public class OrderRepository {
     }
     public List<Integer> findOrdersByCustomerId(int customerId) {
         List<Integer> orderIds = new ArrayList<>();
-        String query = "SELECT id FROM orders WHERE customer_id = ?";
+        String query = "SELECT id FROM orders WHERE customerId = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, customerId);

@@ -24,8 +24,8 @@ public class PizziSalleController {
     public void run() throws SQLException {
         // Generate a random delegation
         Delegation[] delegations = Delegation.values();
-        String delegation = delegations[new Random().nextInt(delegations.length)].getName();
-
+        //String delegation = delegations[new Random().nextInt(delegations.length)].getName();
+    String delegation = Delegation.BARCELONA.getName();
         // Show the welcome message
         pizzaService.setDelegation(delegation);
         pizzaService.showWelcomeMessage();

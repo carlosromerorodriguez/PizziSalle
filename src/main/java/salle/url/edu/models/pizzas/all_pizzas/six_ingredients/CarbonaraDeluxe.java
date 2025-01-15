@@ -4,7 +4,7 @@ import salle.url.edu.enums.Ingredient;
 import salle.url.edu.models.pizzas.Pizza;
 
 public class CarbonaraDeluxe extends Pizza {
-    public CarbonaraDeluxe(String name) {
+    public CarbonaraDeluxe() {
         super("Carbonara Deluxe");
         addSpecificIngredients();
     }

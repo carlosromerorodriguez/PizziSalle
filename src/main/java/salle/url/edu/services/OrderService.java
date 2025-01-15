@@ -6,6 +6,11 @@ import salle.url.edu.models.Customer;
 import salle.url.edu.models.Order;
 import salle.url.edu.models.delegations.GeneralDelegation;
 import salle.url.edu.models.pizzas.Pizza;
+import salle.url.edu.models.pizzas.all_pizzas.five_ingredients.Vegetal;
+import salle.url.edu.models.pizzas.all_pizzas.four_ingredients.*;
+import salle.url.edu.models.pizzas.all_pizzas.six_ingredients.CarbonaraDeluxe;
+import salle.url.edu.models.pizzas.all_pizzas.six_ingredients.Mallorca;
+import salle.url.edu.models.pizzas.all_pizzas.six_ingredients.SixCheeses;
 import salle.url.edu.repositories.CustomerRepository;
 import salle.url.edu.repositories.OrderRepository;
 import salle.url.edu.repositories.PizzaRepository;
@@ -78,13 +83,13 @@ public class OrderService {
 
         Customer customer = customerService.getCustomerById(customerId);
         if (customer == null) {
-            System.out.println("Error: No se encontró información del cliente.");
+            System.out.println("ERROR: Client couldn't be found.");
             return orders;
         }
 
         for (Integer orderId : orderIds) {
             List<String> pizzaNames = pizzaService.getOrderDetailsByOrderId(orderId);
-            String delegation = orderRepository.getDelegationByOrderId(orderId); // Método para obtener la delegación
+            String delegation = orderRepository.getDelegationByOrderId(orderId); // Method to obtain the delegation
 
             for (String pizzaName : pizzaNames) {
                 Pizza pizza = createPizzaFromName(pizzaName, delegation);
@@ -92,7 +97,7 @@ public class OrderService {
                 if (pizza != null) {
                     orders.add(new Order(customer, delegation, pizza));
                 } else {
-                    System.out.println("Error: No se pudo crear la pizza '" + pizzaName + "'");
+                    System.out.println("ERROR: Couldn't create the pizza '" + pizzaName + "'");
                 }
             }
         }
@@ -110,6 +115,36 @@ public class OrderService {
                 return new American();
             case "traviata":
                 return new Traviata();
+            case "burger":
+                return new Burger();
+            case "castellera":
+                return new Castellera();
+            case "cowboy":
+                return new Cowboy();
+            case "texas":
+                return new Texas();
+            case "coast":
+                return new Coast();
+            case "bbq":
+                return new BBQ();
+            case "diablo":
+                return new Diablo();
+            case "carbonara":
+                return new Carbonara();
+            case "spanish":
+                return new Spanish();
+            case "4 cheeses":
+                return new FourCheeses();
+            case "pepperoni":
+                return new Pepperoni();
+            case "vegetal":
+                return new Vegetal();
+            case "6 cheeses":
+                return new SixCheeses();
+            case "mallorca":
+                return new Mallorca();
+            case "carbonara deluxe":
+                return new CarbonaraDeluxe();
             default:
                 return PizzaFactory.createPizza(0, delegation); // Crea una pizza específica según la delegación
         }

@@ -25,7 +25,7 @@ public class PizzaService {
     String greenColor = "\u001B[32m";
 
     public void showWelcomeMessage() {
-        System.out.println("Welcome to PizziSalle " + this.delegation + " delegation!");
+        System.out.println("\nWelcome to PizziSalle " + this.delegation + " delegation!");
     }
 
     public Pizza managePizzaOrder() {
@@ -131,17 +131,39 @@ public class PizzaService {
         System.out.println("\t4. American (Frankfurt, bacon & egg)");
         System.out.println("\t5. Traviata (Bacon, sausage & onion)");
 
-        // TODO: Add more pizzas to the menu
+        // 4 ingredient pizzas
+        System.out.println("\uD83C\uDF55 4 ingredients");
+        System.out.println("\t6. Burger (Miniburgers, egg, bacon & onion)");
+        System.out.println("\t7. Castellera (Onion, tuna, peperoni & olives)");
+        System.out.println("\t8. Cowboy (BBQ Sauce, cheddar, roquefort cheese & bacon)");
+        System.out.println("\t9. Texas (BBQ Sauce, onion, tomato slices & chicken)");
+        System.out.println("\t10. Coast (Tuna, anchovies, prawns & pineapple)");
+        System.out.println("\t11. BBQ (BBQ Sauce, beef, bacon & chicken)");
+        System.out.println("\t12. Diablo (Ham, beef, bacon & chicken)");
+        System.out.println("\t13. Carbonara (Carbonara sauce, bacon, onion & mushrooms)");
+        System.out.println("\t14. Spanish (Jamón Serrano, brie, olives & mushrooms)");
+        System.out.println("\t15. 4 Cheeses (Mozzarella, emmental, roquefort & cheddar)");
+        System.out.println("\t16. Pepperoni (Pepperoni, ham, beef & bacon)");
+
+        // 5 ingredient pizzas
+        System.out.println("\uD83C\uDF55 5 ingredients");
+        System.out.println("\t17. Vegetal (Onion, bell pepper, tomato slices, artichoke & mushrooms)");
+
+        // 6 ingredient pizzas
+        System.out.println("\uD83C\uDF55 6 ingredients");
+        System.out.println("\t18. 6 Cheeses (Mozzarella, goat cheese, brie, emmental, roquefort & cheddar)");
+        System.out.println("\t19. Mallorca (Goat cheese, emmental, cheddar, brie, sobrassada & olives)");
+        System.out.println("\t20. Carbonara Deluxe (Carbonara sauce, bacon, onion, mushrooms, goat cheese & honey)");
 
         // Special pizzas
         System.out.println("\uD83C\uDF81 Special pizzas");
-        System.out.println("\t6. " + this.delegation + "Pizza");
+        System.out.println("\t21. " + this.delegation + "Pizza");
 
         System.out.print("\n-> Please, select a pizza by typing its number: ");
 
         do {
             String line = scanner.nextLine();
-            if (ValidationUtils.checkInt(1, 6, line)) {
+            if (ValidationUtils.checkInt(1, 21, line)) {
                 return Integer.parseInt(line);
             } else {
                 System.out.print(redColor + "ERROR: Please, select a valid pizza number: " + resetColor);

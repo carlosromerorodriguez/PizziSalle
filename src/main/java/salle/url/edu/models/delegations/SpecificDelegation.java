@@ -11,6 +11,6 @@ public class SpecificDelegation extends AbstractDelegation {
 
     @Override
     protected void notifyOrder(Order order) {
-        System.out.println(name + " delegation notified about a new order: " + order.getCustomer().getName());
+        System.out.println(name + " delegation has been notified about a new order from customer " + order.getCustomer().getName());
     }
 }

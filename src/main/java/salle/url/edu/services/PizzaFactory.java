@@ -1,7 +1,12 @@
 package salle.url.edu.services;
 
 import salle.url.edu.models.pizzas.Pizza;
+import salle.url.edu.models.pizzas.all_pizzas.five_ingredients.Vegetal;
+import salle.url.edu.models.pizzas.all_pizzas.four_ingredients.*;
 import salle.url.edu.models.pizzas.all_pizzas.no_ingredients.Margherita;
+import salle.url.edu.models.pizzas.all_pizzas.six_ingredients.CarbonaraDeluxe;
+import salle.url.edu.models.pizzas.all_pizzas.six_ingredients.Mallorca;
+import salle.url.edu.models.pizzas.all_pizzas.six_ingredients.SixCheeses;
 import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.American;
 import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.BaconCrispy;
 import salle.url.edu.models.pizzas.all_pizzas.three_ingredients.Traviata;
@@ -34,6 +39,22 @@ public class PizzaFactory {
                 case 3 -> new BaconCrispy();
                 case 4 -> new American();
                 case 5 -> new Traviata();
+                case 6 -> new Burger();
+                case 7 -> new Castellera();
+                case 8 -> new Cowboy();
+                case 9 -> new Texas();
+                case 10 -> new Coast();
+                case 11 -> new BBQ();
+                case 12 -> new Diablo();
+                case 13 -> new Carbonara();
+                case 14 -> new Spanish();
+                case 15 -> new FourCheeses();
+                case 16 -> new Pepperoni();
+                case 17 -> new Vegetal();
+                case 18 -> new SixCheeses();
+                case 19 -> new Mallorca();
+                case 20 -> new CarbonaraDeluxe();
+
                 default -> {
                     // Create the special pizza based on the delegation
                     Class<? extends Pizza> pizzaClass = SPECIAL_PIZZAS.get(delegation);
