@@ -20,13 +20,20 @@ public class CustomerService {
     String yellowColor = "\u001B[33m";
 
     public Customer getCustomerInfo() {
+        String phone = this.askForPhone();
         String name = this.askForName();
         int age = this.askForAge();
-        String phone = this.askForPhone();
         String address = this.askForDeliveryAddress();
-        boolean isFirstOrder = this.askIfFirstOrder();
 
-        return new Customer(name, age, phone, address, isFirstOrder);
+        return new Customer(name, age, phone, address, true);
+    }
+
+    public Customer getCustomerInfo(String phone) {
+        String name = this.askForName();
+        int age = this.askForAge();
+        String address = this.askForDeliveryAddress();
+
+        return new Customer(name, age, phone, address, true);
     }
 
     private String askForName() {
@@ -53,7 +60,7 @@ public class CustomerService {
         } while (true);
     }
 
-    private String askForPhone() {
+    public String askForPhone() {
         do {
             System.out.print("Enter your phone number: ");
             String line = scanner.nextLine();
@@ -77,7 +84,7 @@ public class CustomerService {
         } while (true);
     }
 
-    private boolean askIfFirstOrder() {
+    public boolean askIfFirstOrder() {
         System.out.println("\n" + yellowColor + "Is this your first order?" + resetColor);
         System.out.println("1- Yes");
         System.out.println("2- No");
@@ -103,4 +110,7 @@ public class CustomerService {
         return customerRepository.findCustomerIdByPhone(phoneNumber);
     }
 
+    public Customer getCustomerInfoByPhone(String phone) {
+        return customerRepository.findCustomerByPhone(phone);
+    }
 }

@@ -24,18 +24,35 @@ public class PizziSalleController {
     public void run() throws SQLException {
         // Generate a random delegation
         Delegation[] delegations = Delegation.values();
-        //String delegation = delegations[new Random().nextInt(delegations.length)].getName();
-    String delegation = Delegation.BARCELONA.getName();
+        String delegation = delegations[new Random().nextInt(delegations.length)].getName();
         // Show the welcome message
         pizzaService.setDelegation(delegation);
         pizzaService.showWelcomeMessage();
 
         // Manage the pizza order and get the customer info
-        Customer customer = customerService.getCustomerInfo();
-        Pizza pizza = pizzaService.managePizzaOrder();
+        boolean newCustomer = customerService.askIfFirstOrder();
+        Customer customer;
+        int customerId = -1;
+        if (newCustomer) {
+            String phone = customerService.askForPhone();
+            customer = customerService.getCustomerInfo(phone);
+            customerId = this.customerService.saveCustomer(customer);
+        }
+        else{
+            String phone = customerService.askForPhone();
+            customer = customerService.getCustomerInfoByPhone(phone);
+            if (customer == null) {
+                System.out.println("Customer not found, please enter all the information");
+                customer = customerService.getCustomerInfo(phone);
+            }
+            else {
+                System.out.println("Welcome back " + customer.getName() + "!");
+            }
 
-        // Save the client into database and get the customerId
-        int customerId = this.customerService.saveCustomer(customer);
+            customerId = this.customerService.saveCustomer(customer);
+        }
+
+        Pizza pizza = pizzaService.managePizzaOrder();
 
         // Once we now the age, we can ask for the beverage
         orderService.askForBeverage(pizza, customer.getAge());

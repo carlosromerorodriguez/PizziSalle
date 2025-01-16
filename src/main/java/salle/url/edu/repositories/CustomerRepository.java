@@ -18,6 +18,11 @@ public class CustomerRepository {
     }
 
     public int saveCustomer(Customer customer) throws SQLException {
+        int existingCustomerId = checkCustomerExists(customer.getPhone());
+        if (existingCustomerId != -1) {
+            return existingCustomerId;
+        }
+
         String insertCustomerSQL = """
                 INSERT INTO customers (name, age, phone, address, isFirstOrder)
                 VALUES (?, ?, ?, ?, ?)
@@ -39,6 +44,21 @@ public class CustomerRepository {
             }
         }
     }
+
+    private int checkCustomerExists(String phone) {
+        String query = "SELECT id FROM customers WHERE phone = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, phone);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
     public Integer findCustomerIdByPhone(String phoneNumber) {
         String query = "SELECT id FROM customers WHERE phone = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -56,6 +76,26 @@ public class CustomerRepository {
         String query = "SELECT id, name, age, phone, address, isFirstOrder FROM customers WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, customerId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Customer(
+                        rs.getString("name"),
+                        rs.getInt("age"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getBoolean("isFirstOrder")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Customer findCustomerByPhone(String phone) {
+        String query = "SELECT id, name, age, phone, address, isFirstOrder FROM customers WHERE phone = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, phone);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new Customer(
