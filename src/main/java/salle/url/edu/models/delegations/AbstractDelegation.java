@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import salle.url.edu.models.Order;
 
-// PATTERN: Composite Pattern
 @AllArgsConstructor
 @Data
 public abstract class AbstractDelegation {

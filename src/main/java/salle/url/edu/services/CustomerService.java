@@ -15,9 +15,9 @@ public class CustomerService {
     private final Scanner scanner = new Scanner(System.in);
     private final CustomerRepository customerRepository;
 
-    String redColor = "\u001B[31m";
-    String resetColor = "\u001B[0m";
-    String yellowColor = "\u001B[33m";
+    private final String redColor = "\u001B[31m";
+    private final String resetColor = "\u001B[0m";
+    private final String yellowColor = "\u001B[33m";
 
     public Customer getCustomerInfo() {
         String phone = this.askForPhone();
@@ -103,9 +103,11 @@ public class CustomerService {
     public int saveCustomer(Customer customer) throws SQLException {
         return this.customerRepository.saveCustomer(customer);
     }
+
     public Customer getCustomerById(int customerId) {
         return customerRepository.findCustomerById(customerId);
     }
+
     public Integer getCustomerIdByPhone(String phoneNumber) {
         return customerRepository.findCustomerIdByPhone(phoneNumber);
     }

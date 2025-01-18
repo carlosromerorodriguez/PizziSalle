@@ -83,10 +83,10 @@ Additionally, there is a headquarters, PizziSalle General (PSG), which oversees 
     - **Explanation**: Allows treating individual objects and compositions of objects uniformly.
     - **Class**: AbstractDelegation.java
 
-6. **Strategy**:
+6. **Patron Strategy**:
     - **Usage**: To implement different strategies for assigning orders to delegations.
     - **Explanation**: Allows selecting an algorithm at runtime.
-    - **Class**: OrderService.java
+    - **Class**: Beverage.java
 
 ---
 
@@ -219,5 +219,5 @@ The project is structured as follows:
 - **Armand Lopez - (armand.lopez)**
 - **Marc Martín - (marc.martin)**
 - **Oriol Rebordosa - (oriol.rebordosa)**
-- **Carlos Romero - (carlos.romero)**
+- **Carlos Romero - (c.romero)**
 - **Joan Tarragó - (j.tarrago)**

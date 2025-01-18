@@ -68,4 +68,30 @@ public class PizzaFactory {
             throw new IllegalArgumentException("Error creating pizza", e);
         }
     }
+
+    public static Pizza createPizzaByName(String pizzaName, String delegation) {
+        return switch (pizzaName.toLowerCase()) {
+            case "margherita" -> new Margherita();
+            case "hawaiian" -> new Hawaiian();
+            case "bacon crispy" -> new BaconCrispy();
+            case "american" -> new American();
+            case "traviata" -> new Traviata();
+            case "burger" -> new Burger();
+            case "castellera" -> new Castellera();
+            case "cowboy" -> new Cowboy();
+            case "texas" -> new Texas();
+            case "coast" -> new Coast();
+            case "bbq" -> new BBQ();
+            case "diablo" -> new Diablo();
+            case "carbonara" -> new Carbonara();
+            case "spanish" -> new Spanish();
+            case "4 cheeses" -> new FourCheeses();
+            case "pepperoni" -> new Pepperoni();
+            case "vegetal" -> new Vegetal();
+            case "6 cheeses" -> new SixCheeses();
+            case "mallorca" -> new Mallorca();
+            case "carbonara deluxe" -> new CarbonaraDeluxe();
+            default -> PizzaFactory.createPizza(0, delegation); // Creates a pizza based on the delegation
+        };
+    }
 }

@@ -20,9 +20,13 @@ public class PizzaService {
     private String delegation;
     private final PizzaRepository pizzaRepository;
 
-    String redColor = "\u001B[31m";
-    String resetColor = "\u001B[0m";
-    String greenColor = "\u001B[32m";
+    private final String resetColor = "\u001B[0m";
+    private final String redColor = "\u001B[31m";
+    private final String greenColor = "\u001B[32m";
+    private final String yellowColor = "\u001B[33m";
+    private final String blueColor = "\u001B[34m";
+    private final String purpleColor = "\u001B[35m";
+    private final String cyanColor = "\u001B[36m";
 
     public void showWelcomeMessage() {
         System.out.println("\nWelcome to PizziSalle " + this.delegation + " delegation!");
@@ -47,7 +51,7 @@ public class PizzaService {
             Ingredient[] ingredients = Ingredient.values();
             showIngredientsMenu(pizza, ingredients);
 
-            System.out.print("-> Add an ingredient (type " + greenColor + "'done' "+ resetColor +  "finish): ");
+            System.out.print("\n-> Add an ingredient (type " + greenColor + "'done' "+ resetColor +  " to finish): ");
             String ingredientInput = scanner.nextLine();
 
             if ("done".equalsIgnoreCase(ingredientInput)) break;
@@ -112,67 +116,69 @@ public class PizzaService {
     }
 
     public int showMenu() {
-        System.out.println("-".repeat(20));
-        System.out.println("Menu");
-        System.out.println("-".repeat(20));
-        System.out.println("These are the available pizzas (all contains tomato sauce \uD83C\uDF45 and cheese \uD83E\uDDC0 by default):");
+        System.out.println(blueColor + "=".repeat(50));
+        System.out.println("🍕 Welcome to PizziSalle Menu 🍕");
+        System.out.println("=".repeat(50) + resetColor);
+        System.out.println(greenColor + "These are the available pizzas (all contain tomato sauce 🍅 and cheese 🧀 by default):" + resetColor);
 
         // No ingredients pizzas
-        System.out.println("\uD83C\uDF55 No ingredients");
-        System.out.println("\t1. Margherita");
+        System.out.println(cyanColor + "🍕 No ingredients" + resetColor);
+        System.out.println("\t" + yellowColor + "1. Margherita" + resetColor);
 
         // 2 ingredient pizzas
-        System.out.println("\uD83C\uDF55 2 ingredients");
-        System.out.println("\t2. Hawaiian (Ham & Pineapple)");
+        System.out.println(cyanColor + "🍕 2 ingredients" + resetColor);
+        System.out.println("\t" + yellowColor + "2. Hawaiian (Ham & Pineapple)" + resetColor);
 
         // 3 ingredient pizzas
-        System.out.println("\uD83C\uDF55 3 ingredients");
-        System.out.println("\t3. Bacon Crispy (Ham, Chicken & Bacon)");
-        System.out.println("\t4. American (Frankfurt, bacon & egg)");
-        System.out.println("\t5. Traviata (Bacon, sausage & onion)");
+        System.out.println(cyanColor + "🍕 3 ingredients" + resetColor);
+        System.out.println("\t" + yellowColor + "3. Bacon Crispy (Ham, Chicken & Bacon)" + resetColor);
+        System.out.println("\t" + yellowColor + "4. American (Frankfurt, bacon & egg)" + resetColor);
+        System.out.println("\t" + yellowColor + "5. Traviata (Bacon, sausage & onion)" + resetColor);
 
         // 4 ingredient pizzas
-        System.out.println("\uD83C\uDF55 4 ingredients");
-        System.out.println("\t6. Burger (Miniburgers, egg, bacon & onion)");
-        System.out.println("\t7. Castellera (Onion, tuna, peperoni & olives)");
-        System.out.println("\t8. Cowboy (BBQ Sauce, cheddar, roquefort cheese & bacon)");
-        System.out.println("\t9. Texas (BBQ Sauce, onion, tomato slices & chicken)");
-        System.out.println("\t10. Coast (Tuna, anchovies, prawns & pineapple)");
-        System.out.println("\t11. BBQ (BBQ Sauce, beef, bacon & chicken)");
-        System.out.println("\t12. Diablo (Ham, beef, bacon & chicken)");
-        System.out.println("\t13. Carbonara (Carbonara sauce, bacon, onion & mushrooms)");
-        System.out.println("\t14. Spanish (Jamón Serrano, brie, olives & mushrooms)");
-        System.out.println("\t15. 4 Cheeses (Mozzarella, emmental, roquefort & cheddar)");
-        System.out.println("\t16. Pepperoni (Pepperoni, ham, beef & bacon)");
+        System.out.println(cyanColor + "🍕 4 ingredients" + resetColor);
+        System.out.println("\t" + yellowColor + "6. Burger (Miniburgers, egg, bacon & onion)" + resetColor);
+        System.out.println("\t" + yellowColor + "7. Castellera (Onion, tuna, peperoni & olives)" + resetColor);
+        System.out.println("\t" + yellowColor + "8. Cowboy (BBQ Sauce, cheddar, roquefort cheese & bacon)" + resetColor);
+        System.out.println("\t" + yellowColor + "9. Texas (BBQ Sauce, onion, tomato slices & chicken)" + resetColor);
+        System.out.println("\t" + yellowColor + "10. Coast (Tuna, anchovies, prawns & pineapple)" + resetColor);
+        System.out.println("\t" + yellowColor + "11. BBQ (BBQ Sauce, beef, bacon & chicken)" + resetColor);
+        System.out.println("\t" + yellowColor + "12. Diablo (Ham, beef, bacon & chicken)" + resetColor);
+        System.out.println("\t" + yellowColor + "13. Carbonara (Carbonara sauce, bacon, onion & mushrooms)" + resetColor);
+        System.out.println("\t" + yellowColor + "14. Spanish (Jamón Serrano, brie, olives & mushrooms)" + resetColor);
+        System.out.println("\t" + yellowColor + "15. 4 Cheeses (Mozzarella, emmental, roquefort & cheddar)" + resetColor);
+        System.out.println("\t" + yellowColor + "16. Pepperoni (Pepperoni, ham, beef & bacon)" + resetColor);
 
         // 5 ingredient pizzas
-        System.out.println("\uD83C\uDF55 5 ingredients");
-        System.out.println("\t17. Vegetal (Onion, bell pepper, tomato slices, artichoke & mushrooms)");
+        System.out.println(cyanColor + "🍕 5 ingredients" + resetColor);
+        System.out.println("\t" + yellowColor + "17. Vegetal (Onion, bell pepper, tomato slices, artichoke & mushrooms)" + resetColor);
 
         // 6 ingredient pizzas
-        System.out.println("\uD83C\uDF55 6 ingredients");
-        System.out.println("\t18. 6 Cheeses (Mozzarella, goat cheese, brie, emmental, roquefort & cheddar)");
-        System.out.println("\t19. Mallorca (Goat cheese, emmental, cheddar, brie, sobrassada & olives)");
-        System.out.println("\t20. Carbonara Deluxe (Carbonara sauce, bacon, onion, mushrooms, goat cheese & honey)");
+        System.out.println(cyanColor + "🍕 6 ingredients" + resetColor);
+        System.out.println("\t" + yellowColor + "18. 6 Cheeses (Mozzarella, goat cheese, brie, emmental, roquefort & cheddar)" + resetColor);
+        System.out.println("\t" + yellowColor + "19. Mallorca (Goat cheese, emmental, cheddar, brie, sobrassada & olives)" + resetColor);
+        System.out.println("\t" + yellowColor + "20. Carbonara Deluxe (Carbonara sauce, bacon, onion, mushrooms, goat cheese & honey)" + resetColor);
 
         // Special pizzas
-        System.out.println("\uD83C\uDF81 Special pizzas");
-        System.out.println("\t21. " + this.delegation + "Pizza");
+        System.out.println(cyanColor + "🎁 Special pizzas" + resetColor);
+        System.out.println("\t" + yellowColor + "21. " + this.delegation + " Pizza" + resetColor);
 
-        System.out.print("\n-> Please, select a pizza by typing its number: ");
+        System.out.print(greenColor + "\n-> Please, select a pizza by typing its number: " + resetColor);
 
         do {
             String line = scanner.nextLine();
             if (ValidationUtils.checkInt(1, 21, line)) {
                 return Integer.parseInt(line);
             } else {
-                System.out.print(redColor + "ERROR: Please, select a valid pizza number: " + resetColor);
+                System.out.print(redColor + "❌ ERROR: Please, select a valid pizza number: " + resetColor);
             }
         } while (true);
     }
+
     public List<String> getOrderDetailsByOrderId(int orderId) {
         return pizzaRepository.findPizzasByOrderId(orderId);
     }
+
     public void savePizza(int orderId, Pizza pizza) throws SQLException {
         this.pizzaRepository.savePizza(orderId, pizza);
     }

@@ -17,6 +17,9 @@ public enum Beverage {
     private final String name;
     private final BeverageValidation validation;
 
+    // PATTERN: Patron Strategy - {Behavioral Pattern}
+    //          This class is a concrete strategy that implements the BeverageValidation interface
+    //          and is used to validate if a person can consume a beer based on the age
     public boolean canConsume(int age) {
         return validation.canConsume(age);
     }
